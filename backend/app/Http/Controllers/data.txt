@@ -1,0 +1,9 @@
+"travelDate": "12-12-2019",
+"airline": "a",
+"flightNumber": 23,
+"aircraftRegistrati": "A41F",
+"departurePoint": "Madrid",
+"arrivalPoint": "Tanger",
+"captain": "C",
+"firstOfficer": "O",
+"customerServiceManager": "M"
