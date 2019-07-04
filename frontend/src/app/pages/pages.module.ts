@@ -1,3 +1,4 @@
+import { AddModule } from "./add/add.module";
 import { DashboardModule } from "./dashboard/dashboard.module";
 import { CustomersModule } from "./users/customers/customers.module";
 import { NgModule } from "@angular/core";
@@ -17,7 +18,8 @@ const PAGES_COMPONENTS = [PagesComponent];
     DashboardModule,
     TaskersModule,
     CustomersModule,
-    MiscellaneousModule
+    MiscellaneousModule,
+    AddModule
   ],
   declarations: [...PAGES_COMPONENTS]
 })

@@ -16,6 +16,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { environment } from "../environments/environment";
 import { AuthGuard } from "./services/auth/auth-guard.service";
 import { TokenInterceptor } from "./services/auth/token.interceptor";
+import { NbDatepickerModule } from "@nebular/theme";
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +27,7 @@ import { TokenInterceptor } from "./services/auth/token.interceptor";
     AppRoutingModule,
     BrowserAnimationsModule,
     NgbModule.forRoot(),
+    NbDatepickerModule.forRoot(),
     ThemeModule.forRoot(),
     CoreModule.forRoot(),
     NbAuthModule.forRoot({

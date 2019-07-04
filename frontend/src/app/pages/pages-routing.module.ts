@@ -1,3 +1,4 @@
+import { AddComponent } from "./add/add.component";
 import { RouterModule, Routes } from "@angular/router";
 import { NgModule } from "@angular/core";
 
@@ -14,6 +15,10 @@ const routes: Routes = [
       {
         path: "dashboard",
         component: DashboardComponent
+      },
+      {
+        path: "add",
+        component: AddComponent
       },
       {
         path: "users/customers",
