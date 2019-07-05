@@ -5,20 +5,21 @@ import { catchError } from "rxjs/operators";
 import { NbTokenService } from "@nebular/auth";
 import { Router } from "@angular/router";
 import { of, Observable } from "rxjs";
-import { User } from "../../interfaces/users.interface";
 
 @Injectable({
   providedIn: "root"
 })
-export class AdminService {
+export class ApiService {
   constructor(
     private http: HttpClient,
     private token: NbTokenService,
     private router: Router
   ) {}
-  profile() {
-    return this.get(environment.base_url + "user/profile");
+
+  getAllFlights() {
+    return this.get(environment.base_url + "flight/all");
   }
+
   // functions
 
   get(url: string) {

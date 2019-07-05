@@ -5,18 +5,19 @@
         <form [formGroup]="form">
           <div class="row">
             <div class="col-sm-6 col-12">
-              <input formControlName="dateOfTravel" fullWidth nbInput placeholder="Date of flight"
+              <input formControlName="travelDate" fullWidth nbInput placeholder="Date of flight"
                 [nbDatepicker]="datepicker">
               <nb-datepicker format="MM-dd-yyyy" #datepicker></nb-datepicker>
             </div>
             <div class="col-sm-6 col-12">
-              <input formControlName="airline" fullWidth nbInput type="text" placeholder="Airline">
+              <input (input)="refresh()" formControlName="airline" fullWidth nbInput type="text" placeholder="Airline">
             </div>
             <div class="col-sm-6 col-12">
-              <input formControlName="flightNumber" fullWidth nbInput type="number" placeholder="Flight Number">
+              <input (input)="refresh()" formControlName="flightNumber" fullWidth nbInput type="number"
+                placeholder="Flight Number">
             </div>
             <div class="col-sm-6 col-12">
-              <input formControlName="aircraftRegistration" fullWidth nbInput type="text"
+              <input (input)="refresh()" formControlName="aircraftRegistration" fullWidth nbInput type="text"
                 placeholder="Aircraft Registration">
             </div>
             <div class="col-sm-6 col-12">
@@ -26,7 +27,7 @@
               <input formControlName="departurePoint" fullWidth nbInput type="text" placeholder="Departure Point">
             </div>
             <div class="col-sm-6 col-12">
-              <input formControlName="capitain" fullWidth nbInput type="text" placeholder="Captain">
+              <input formControlName="captain" fullWidth nbInput type="text" placeholder="Captain">
             </div>
             <div class="col-sm-6 col-12">
               <input formControlName="firstOfficer" fullWidth nbInput type="text" placeholder="First Officer">
@@ -43,7 +44,7 @@
         </form>
         <div class="row justify-content-center">
           <div class="col-12 col-sm-4">
-            <button (click)="submit()" nbButton fullWidth>
+            <button [disabled]="!this.form.valid" (click)="submit()" nbButton fullWidth>
               Add Flight
             </button>
           </div>
@@ -52,7 +53,7 @@
 
     </nb-card-body>
   </nb-card>
-  <nb-card style="width:100%">
+  <nb-card *ngIf="dataSource?.length > 0" style="width:100%">
     <nb-card-header>
       History
     </nb-card-header>
@@ -61,41 +62,25 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">Position</th>
-            <th scope="col">Name</th>
-            <th scope="col">Weight</th>
-            <th scope="col">Symbol</th>
+            <th scope="col">ID</th>
+            <th scope="col">Date Of Travel</th>
+            <th scope="col">Airline</th>
+            <th scope="col">Flight Number</th>
+            <th scope="col">Aircraft Registration</th>
+            <th scope="col">Seat Number</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let el of dataSource">
-            <th scope="row">{{el.position}}</th>
-            <td>{{el.name}}</td>
-            <td>{{el.weight}}</td>
-            <td>{{el.symbol}}</td>
+            <th scope="col">{{el.id }}</th>
+            <th scope="col">{{el.travelDate }}</th>
+            <th scope="col">{{el.airline }}</th>
+            <th scope="col">{{el.flightNumber }}</th>
+            <th scope="col">{{el.aircraftRegistration }}</th>
+            <th scope="col">{{el.seatNumber }}</th>
           </tr>
         </tbody>
       </table>
     </nb-card-body>
   </nb-card>
 </div>
-<!-- Flight Information Collected:
-        Date of Travel X
-        Airline X
-        Flight Number X
-        Aircraft Registration X
-        Seat Number X
-        Departure Point X
-        Arrival Point X
-        Captain X
-        First Officer X
-        Customer Service Manager X
-        Miles Travelled – API Grabbed X
-
-      When you are entering this data the database is being searched, with details of any flights you have been on with any of
-    the same:
-
-        Airline
-        Flight Numbers
-        Aircraft Registrations 
--->

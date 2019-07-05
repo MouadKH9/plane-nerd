@@ -3,9 +3,8 @@ import { RouterModule, Routes } from "@angular/router";
 import { NgModule } from "@angular/core";
 
 import { PagesComponent } from "./pages.component";
-import { CustomersComponent } from "./users/customers/customers.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
-import { TaskersComponent } from "./users/taskers/taskers.component";
+import { SearchComponent } from "./search/search.component";
 
 const routes: Routes = [
   {
@@ -21,12 +20,8 @@ const routes: Routes = [
         component: AddComponent
       },
       {
-        path: "users/customers",
-        component: CustomersComponent
-      },
-      {
-        path: "users/taskers",
-        component: TaskersComponent
+        path: "search",
+        component: SearchComponent
       },
       {
         path: "",

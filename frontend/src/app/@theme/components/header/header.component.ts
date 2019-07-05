@@ -5,8 +5,6 @@ import { AnalyticsService } from "../../../@core/utils";
 import { NbAuthService, NbAuthJWTToken, NbTokenService } from "@nebular/auth";
 import { map } from "rxjs/operators";
 import { Router } from "@angular/router";
-import { AdminService } from "../../../services/api/admin.service";
-import { environment } from "../../../../environments/environment";
 
 @Component({
   selector: "ngx-header",
@@ -27,16 +25,15 @@ export class HeaderComponent implements OnInit {
     private analyticsService: AnalyticsService,
     private nbMenuService: NbMenuService,
     private token: NbTokenService,
-    private router: Router,
-    private adminApi: AdminService
+    private router: Router
   ) {
     this.authService.onTokenChange().subscribe((token: NbAuthJWTToken) => {
       if (token.isValid()) {
-        this.adminApi.profile().subscribe((res: any) => {
-          console.log(res.body.profile);
-          this.profilePic =
-            environment.base_url + "file/profile/" + res.body.image;
-        });
+        // this.adminApi.profile().subscribe((res: any) => {
+        //   console.log(res.body.profile);
+        //   this.profilePic =
+        //     environment.base_url + "file/profile/" + res.body.image;
+        // });
       }
     });
     this.nbMenuService

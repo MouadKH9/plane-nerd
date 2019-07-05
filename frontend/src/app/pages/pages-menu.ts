@@ -7,17 +7,8 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: "/pages/add"
   },
   {
-    title: "Users",
-    icon: "nb-person",
-    children: [
-      {
-        title: "Customers",
-        link: "/pages/users/customers"
-      },
-      {
-        title: "Taskers",
-        link: "/pages/users/taskers"
-      }
-    ]
+    title: "Search Flights",
+    icon: "nb-search",
+    link: "/pages/search"
   }
 ];
