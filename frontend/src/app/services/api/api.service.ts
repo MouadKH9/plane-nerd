@@ -19,6 +19,9 @@ export class ApiService {
   getAllFlights() {
     return this.get(environment.base_url + "flight/all");
   }
+  addFlight(flight: any) {
+    return this.post(environment.base_url + "flight/add", flight);
+  }
 
   // functions
 

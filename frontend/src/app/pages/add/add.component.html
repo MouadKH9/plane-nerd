@@ -1,5 +1,8 @@
 <div class="row">
   <nb-card>
+    <nb-card-header>
+      Add a new flight:
+    </nb-card-header>
     <nb-card-body>
       <div class="container">
         <form [formGroup]="form">
@@ -27,6 +30,9 @@
               <input formControlName="departurePoint" fullWidth nbInput type="text" placeholder="Departure Point">
             </div>
             <div class="col-sm-6 col-12">
+              <input formControlName="arrivalPoint" fullWidth nbInput type="text" placeholder="Arrival Point">
+            </div>
+            <div class="col-sm-6 col-12">
               <input formControlName="captain" fullWidth nbInput type="text" placeholder="Captain">
             </div>
             <div class="col-sm-6 col-12">
@@ -40,15 +46,13 @@
               <input formControlName="milesTravelled" fullWidth nbInput type="number"
                 placeholder="Miles Travaled (temp)">
             </div>
+            <div class="col-12 col-sm-6">
+              <button [disabled]="!this.form.valid" (click)="submit()" nbButton fullWidth>
+                Add Flight
+              </button>
+            </div>
           </div>
         </form>
-        <div class="row justify-content-center">
-          <div class="col-12 col-sm-4">
-            <button [disabled]="!this.form.valid" (click)="submit()" nbButton fullWidth>
-              Add Flight
-            </button>
-          </div>
-        </div>
       </div>
 
     </nb-card-body>

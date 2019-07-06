@@ -2,6 +2,7 @@ import { map } from "rxjs/operators";
 import { ApiService } from "./../../services/api/api.service";
 import { Component } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { NbToastrService } from "@nebular/theme";
 
 @Component({
   selector: "add-page",
@@ -12,7 +13,11 @@ export class AddComponent {
   dataSource = [];
   allFlights = [];
   form: FormGroup;
-  constructor(private builder: FormBuilder, private api: ApiService) {
+  constructor(
+    private builder: FormBuilder,
+    private api: ApiService,
+    private toast: NbToastrService
+  ) {
     this.form = this.builder.group({
       travelDate: ["", [Validators.required]],
       airline: ["", [Validators.required]],
@@ -54,6 +59,9 @@ export class AddComponent {
   }
 
   submit() {
-    console.log(this.form.value);
+    this.api.addFlight(this.form.value).subscribe((res: any) => {
+      this.toast.success("Flight added successfully", "Success");
+      this.form.reset();
+    });
   }
 }

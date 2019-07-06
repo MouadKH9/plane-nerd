@@ -31,7 +31,7 @@ class UserController extends Controller{
     }
 
     public function register(Request $request){
-        $credentials = $request->only('name', 'email', 'password');
+        $credentials = $request->only('fullName', 'email', 'password');
 
         $validator = Validator::make($request->all(),[
             'email'=>'email|required',
@@ -40,11 +40,11 @@ class UserController extends Controller{
         if($validator->fails())
             return response()->error("Error: ". $validator->errors()->first(),401);
 
-        $name = $request->name;
+        $fullName = $request->fullName;
         $email = $request->email;
         $password = $request->password;
 
-        $user = User::create(['name' => $name, 'email' => $email, 'password' => Hash::make($password)]);
+        $user = User::create(['name' => $fullName, 'email' => $email, 'password' => Hash::make($password)]);
 
         return response()->success(["message"=>"Registered successfully!"]);
     }
