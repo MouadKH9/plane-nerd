@@ -1,16 +1,24 @@
+import { NbMenuService, NbSidebarService } from "@nebular/theme";
+import { ApiService } from "./../../services/api/api.service";
 import { Component } from "@angular/core";
+import { LocalDataSource } from "ng2-smart-table";
 @Component({
   selector: "search-page",
   templateUrl: "./search.component.html"
 })
 export class SearchComponent {
   settings = {
+    actions: {
+      add: false,
+      edit: false,
+      delete: false
+    },
     columns: {
-      id: {
-        title: "id",
-        type: "number",
-        editable: false
-      },
+      // id: {
+      //   title: "id",
+      //   type: "number",
+      //   editable: false
+      // },
       travelDate: {
         title: "Date Of Travel",
         type: "string"
@@ -57,5 +65,12 @@ export class SearchComponent {
       }
     }
   };
-  constructor() {}
+  source: LocalDataSource;
+  constructor(private api: ApiService, private side: NbSidebarService) {
+    this.api.getAllFlights().subscribe((res: any) => {
+      console.log(res);
+      this.source = new LocalDataSource(res);
+      this.side.collapse("menu-sidebar");
+    });
+  }
 }

@@ -59,9 +59,22 @@ export class AddComponent {
   }
 
   submit() {
+    this.form.patchValue({
+      travelDate: this.getDate(this.form.value.travelDate)
+    });
     this.api.addFlight(this.form.value).subscribe((res: any) => {
       this.toast.success("Flight added successfully", "Success");
       this.form.reset();
     });
+  }
+
+  getDate(date: any) {
+    return `${date.getFullYear()}-${this.fixMe(date.getMonth())}-${this.fixMe(
+      date.getDay()
+    )}`;
+  }
+
+  fixMe(n: number) {
+    return n < 10 ? "0" + n : n + "";
   }
 }
