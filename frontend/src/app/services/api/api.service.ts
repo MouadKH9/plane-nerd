@@ -31,6 +31,20 @@ export class ApiService {
     return this.post(environment.base_url + "flight/add", flight);
   }
 
+  getStats() {
+    return this.http.get(environment.base_url + "stats").pipe(
+      catchError(err => {
+        if (err.status === 401) this.logout();
+        else
+          this.toast.danger(
+            "There was an error connecting to the server!",
+            "Error"
+          );
+        return of(err);
+      })
+    );
+  }
+
   // functions
 
   get(url: string) {
