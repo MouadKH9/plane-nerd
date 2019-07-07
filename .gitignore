@@ -1,8 +1,8 @@
 # compiled output
-/dist
+dist
 /tmp
 /out-tsc
-
+public
 # dependencies
 node_modules
 vendor

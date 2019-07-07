@@ -17,9 +17,9 @@ class CreateFlightsTable extends Migration
             $table->bigIncrements('id');
             $table->string('travelDate');
             $table->string('airline');
-            $table->integer('flightNumber');
+            $table->string('flightNumber');
             $table->string('aircraftRegistration');
-            $table->integer('seatNumber');
+            $table->string('seatNumber');
             $table->string('departurePoint');
             $table->string('arrivalPoint');
             $table->string('captain');
