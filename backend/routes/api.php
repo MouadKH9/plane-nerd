@@ -13,4 +13,6 @@ Route::group(['middleware' => ['jwt.auth']], function () {
     Route::delete('flight/delete/{id}', "FlightController@destroy");
     Route::get('flight/{id}', "FlightController@show");
 
+
+    Route::get('stats', 'StatsController@getAll');
 });
