@@ -68,7 +68,6 @@ export class SearchComponent {
   source: LocalDataSource;
   constructor(private api: ApiService, private side: NbSidebarService) {
     this.api.getAllFlights().subscribe((res: any) => {
-      console.log(res);
       this.source = new LocalDataSource(res);
       this.side.collapse("menu-sidebar");
     });

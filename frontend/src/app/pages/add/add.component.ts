@@ -63,15 +63,20 @@ export class AddComponent {
       travelDate: this.getDate(this.form.value.travelDate)
     });
     this.api.addFlight(this.form.value).subscribe((res: any) => {
+      if (!res.success)
+        return this.toast.danger(
+          "There was an error saving this flight!",
+          "Error"
+        );
       this.toast.success("Flight added successfully", "Success");
       this.form.reset();
     });
   }
 
   getDate(date: any) {
-    return `${date.getFullYear()}-${this.fixMe(date.getMonth())}-${this.fixMe(
-      date.getDay()
-    )}`;
+    return `${date.getFullYear()}-${this.fixMe(
+      date.getMonth() + 1
+    )}-${this.fixMe(date.getDate())}`;
   }
 
   fixMe(n: number) {
