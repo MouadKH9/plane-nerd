@@ -23,7 +23,11 @@
         Top routes:
       </nb-card-header>
       <nb-card-body>
-
+        <nb-list>
+          <nb-list-item *ngFor="let route of stats?.topRoutes">
+            {{ route.departurePoint }}
+          </nb-list-item>
+        </nb-list>
       </nb-card-body>
     </nb-card>
   </div>
