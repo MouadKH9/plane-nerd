@@ -38,7 +38,7 @@ class StatsController extends Controller{
                 ->select('travelDate',DB::raw('count(*) as count'))
                 ->groupBy('travelDate')
                 ->get();
-        
+        if(count($data) == 0) return [];
         $period = new \DatePeriod(
             new \DateTime($data[0]->travelDate),
             new \DateInterval('P1D'),

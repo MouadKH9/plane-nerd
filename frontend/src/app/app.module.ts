@@ -17,6 +17,7 @@ import { environment } from "../environments/environment";
 import { AuthGuard } from "./services/auth/auth-guard.service";
 import { TokenInterceptor } from "./services/auth/token.interceptor";
 import { NbDatepickerModule, NbToastrModule } from "@nebular/theme";
+import { GoogleChartsModule } from "angular-google-charts";
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,6 +32,7 @@ import { NbDatepickerModule, NbToastrModule } from "@nebular/theme";
     ThemeModule.forRoot(),
     NbToastrModule.forRoot(),
     CoreModule.forRoot(),
+    GoogleChartsModule.forRoot(),
     NbAuthModule.forRoot({
       strategies: [
         NbPasswordAuthStrategy.setup({
