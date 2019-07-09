@@ -25,7 +25,14 @@
       <nb-card-body>
         <nb-list>
           <nb-list-item *ngFor="let route of stats?.topRoutes">
-            {{ route.departurePoint }}
+            <h5 class="top-flights">
+              <span>
+                From {{ route.departurePoint }} to {{ route.arrivalPoint }}
+              </span>
+              <span>
+                {{ route.count }}
+              </span>
+            </h5>
           </nb-list-item>
         </nb-list>
       </nb-card-body>
@@ -34,6 +41,7 @@
   <div class="col-12 col-sm-6">
     <nb-card>
       <nb-card-body>
+        <google-chart [data]="pieChart"></google-chart>
       </nb-card-body>
     </nb-card>
   </div>

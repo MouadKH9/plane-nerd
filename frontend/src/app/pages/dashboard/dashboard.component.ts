@@ -1,5 +1,6 @@
 import { ApiService } from "./../../services/api/api.service";
 import { Component } from "@angular/core";
+import { GoogleChartInterface } from "ng2-google-charts/google-charts-interfaces";
 @Component({
   selector: "dashboard-page",
   templateUrl: "./dashboard.component.html",
@@ -7,9 +8,23 @@ import { Component } from "@angular/core";
 })
 export class DashboardComponent {
   stats: any;
+  pieChart: GoogleChartInterface;
   constructor(private api: ApiService) {
     this.api.getStats().subscribe((res: any) => {
       this.stats = res;
+      let dataTable = [["Days", "Flights Per Day"]];
+      this.stats.flightsPerDay.forEach(el => {
+        let date = Object.keys(el)[0];
+        let count: string = Object.values(el)[0];
+        dataTable.push([date.substr(5, date.length), count]);
+      });
+      console.log(dataTable);
+
+      this.pieChart = {
+        chartType: "LineChart",
+        dataTable,
+        options: { title: "Flights Per Day" }
+      };
     });
   }
 }
