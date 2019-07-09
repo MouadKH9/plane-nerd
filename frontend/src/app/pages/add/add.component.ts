@@ -59,18 +59,30 @@ export class AddComponent {
   }
 
   submit() {
-    this.form.patchValue({
-      travelDate: this.getDate(this.form.value.travelDate)
-    });
-    this.api.addFlight(this.form.value).subscribe((res: any) => {
-      if (!res.success)
-        return this.toast.danger(
-          "There was an error saving this flight!",
-          "Error"
-        );
-      this.toast.success("Flight added successfully", "Success");
-      this.form.reset();
-    });
+    this.api
+      .getCoordinates(this.form.value.departurePoint)
+      .subscribe((departure: any) => {
+        console.log("From:");
+        console.log(departure.results[0].geometry);
+        // this.api
+        //   .getCoordinates(this.form.value.arrivalPoint)
+        //   .subscribe((arrival: any) => {
+        //     console.log("To:");
+        //     console.log(arrival.results[0].geometry);
+        //   });
+      });
+    // this.form.patchValue({
+    //   travelDate: this.getDate(this.form.value.travelDate)
+    // });
+    // this.api.addFlight(this.form.value).subscribe((res: any) => {
+    //   if (!res.success)
+    //     return this.toast.danger(
+    //       "There was an error saving this flight!",
+    //       "Error"
+    //     );
+    //   this.toast.success("Flight added successfully", "Success");
+    //   this.form.reset();
+    // });
   }
 
   getDate(date: any) {

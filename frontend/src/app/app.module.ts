@@ -18,6 +18,7 @@ import { AuthGuard } from "./services/auth/auth-guard.service";
 import { TokenInterceptor } from "./services/auth/token.interceptor";
 import { NbDatepickerModule, NbToastrModule } from "@nebular/theme";
 import { Ng2GoogleChartsModule } from "ng2-google-charts";
+import { CountUpModule } from "countup.js-angular2";
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,6 +29,7 @@ import { Ng2GoogleChartsModule } from "ng2-google-charts";
     AppRoutingModule,
     BrowserAnimationsModule,
     NgbModule.forRoot(),
+    CountUpModule,
     NbDatepickerModule.forRoot(),
     ThemeModule.forRoot(),
     NbToastrModule.forRoot(),

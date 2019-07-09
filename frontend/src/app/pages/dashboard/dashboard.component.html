@@ -3,7 +3,9 @@
     <nb-card>
       <nb-card-body class="panel">
         <h5>Number of flights:</h5>
-        <h4>{{stats?.flightsCount}}</h4>
+        <h4>
+          <span [countUp]="stats?.flightsCount" [options]="{duration: 1}">0</span>
+        </h4>
       </nb-card-body>
     </nb-card>
   </div>
@@ -11,7 +13,10 @@
     <nb-card>
       <nb-card-body class="panel">
         <h5>Miles covered:</h5>
-        <h4>{{stats?.milesCovered}}</h4>
+        <h4>
+          <span [countUp]="stats?.milesCovered" [options]="{duration: 1}">0</span>
+        </h4>
+
       </nb-card-body>
     </nb-card>
   </div>

@@ -47,6 +47,7 @@
     "bootstrap": "4.0.0",
     "classlist.js": "1.1.20150312",
     "core-js": "2.5.1",
+    "countup.js-angular2": "^7.3.0",
     "eva-icons": "^1.1.1",
     "intl": "1.2.5",
     "ionicons": "2.0.1",

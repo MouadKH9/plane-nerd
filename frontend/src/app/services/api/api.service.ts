@@ -4,7 +4,7 @@ import { environment } from "../../../environments/environment";
 import { catchError } from "rxjs/operators";
 import { NbTokenService } from "@nebular/auth";
 import { Router } from "@angular/router";
-import { of, Observable } from "rxjs";
+import { of } from "rxjs";
 import { NbToastrService } from "@nebular/theme";
 
 @Injectable({
@@ -42,6 +42,14 @@ export class ApiService {
           );
         return of(err);
       })
+    );
+  }
+
+  getCoordinates(city: string) {
+    return this.get(
+      `https://api.opencagedata.com/geocode/v1/json?q=${city}&key=${
+        environment.opencagedataAPIkey
+      }&limit=1`
     );
   }
 

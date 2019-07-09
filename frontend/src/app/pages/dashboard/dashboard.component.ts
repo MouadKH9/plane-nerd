@@ -15,10 +15,9 @@ export class DashboardComponent {
       let dataTable = [["Days", "Flights Per Day"]];
       this.stats.flightsPerDay.forEach(el => {
         let date = Object.keys(el)[0];
-        let count: string = Object.values(el)[0];
+        let count: string = Object.values(el)[0] as string;
         dataTable.push([date.substr(5, date.length), count]);
       });
-      console.log(dataTable);
 
       this.pieChart = {
         chartType: "LineChart",

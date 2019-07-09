@@ -15,7 +15,8 @@ class FlightController extends Controller
     public function create(Request $request){
         Model::unguard();
         try {
-            Flight::create($request->all());
+            $data = $request->all();
+            Flight::create($data);
             return response()->json(["success"=>true]);
         } catch (\Exception $e) {
             return response()->json(["success"=> false, "error"=>$e->getMessage()]);

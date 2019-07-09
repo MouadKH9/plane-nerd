@@ -25,7 +25,7 @@ class CreateFlightsTable extends Migration
             $table->string('captain');
             $table->string('firstOfficer');
             $table->string('customerServiceManager');
-            $table->integer('milesTravelled');
+            $table->integer('milesTravelled')->nullable();
             $table->timestamps();
         });
     }
