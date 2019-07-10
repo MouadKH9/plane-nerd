@@ -8,10 +8,12 @@ import { GoogleChartInterface } from "ng2-google-charts/google-charts-interfaces
 })
 export class DashboardComponent {
   stats: any;
+  ok: boolean = false;
   pieChart: GoogleChartInterface;
   constructor(private api: ApiService) {
     this.api.getStats().subscribe((res: any) => {
       this.stats = res;
+      if (this.stats.flightsCount == 0) return;
       let dataTable = [["Days", "Flights Per Day"]];
       this.stats.flightsPerDay.forEach(el => {
         let date = Object.keys(el)[0];
@@ -24,6 +26,7 @@ export class DashboardComponent {
         dataTable,
         options: { title: "Flights Per Day" }
       };
+      this.ok = true;
     });
   }
 }

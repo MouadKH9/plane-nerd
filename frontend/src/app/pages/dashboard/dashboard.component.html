@@ -4,9 +4,7 @@
       <nb-card-body class="panel">
         <h5>Number of flights:</h5>
         <h4>
-          <span [countUp]="stats?.flightsCount" [options]="{ duration: 1 }"
-            >0</span
-          >
+          <span [countUp]="stats?.flightsCount" [options]="{ duration: 1 }">0</span>
         </h4>
       </nb-card-body>
     </nb-card>
@@ -16,9 +14,7 @@
       <nb-card-body class="panel">
         <h5>Miles covered:</h5>
         <h4>
-          <span [countUp]="stats?.milesCovered" [options]="{ duration: 1 }"
-            >0</span
-          >
+          <span [countUp]="stats?.milesCovered" [options]="{ duration: 1 }">0</span>
         </h4>
       </nb-card-body>
     </nb-card>
@@ -46,7 +42,7 @@
       </nb-card-body>
     </nb-card>
   </div>
-  <div class="col-12 col-sm-6">
+  <div *ngIf="ok" class="col-12 col-sm-6">
     <nb-card>
       <nb-card-body>
         <google-chart [data]="pieChart"></google-chart>
