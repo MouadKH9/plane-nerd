@@ -45,8 +45,7 @@
           </div>
           <div class="row justify-content-center">
             <div class="col-12 col-sm-4">
-              <!-- [disabled]="!this.form.valid" -->
-              <button (click)="submit()" nbButton fullWidth>
+              <button [disabled]="!this.form.valid" (click)="submit()" nbButton fullWidth>
                 Add Flight
               </button>
             </div>

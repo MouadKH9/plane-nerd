@@ -47,9 +47,9 @@ export class ApiService {
 
   getCoordinates(city: string) {
     return this.get(
-      `https://api.opencagedata.com/geocode/v1/json?q=${city}&key=${
-        environment.opencagedataAPIkey
-      }&limit=1`
+      `https://eu1.locationiq.com/v1/search.php?key=${
+        environment.geocodingAPI
+      }&format=json&limit=1&q=${city}`
     );
   }
 

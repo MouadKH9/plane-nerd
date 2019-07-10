@@ -1,8 +1,11 @@
-import { map } from "rxjs/operators";
 import { ApiService } from "./../../services/api/api.service";
 import { Component } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { NbToastrService } from "@nebular/theme";
+import { environment } from "../../../environments/environment.prod";
+
+declare var $: any;
+declare var google: any;
 
 @Component({
   selector: "add-page",
@@ -29,7 +32,7 @@ export class AddComponent {
       captain: ["", [Validators.required]],
       firstOfficer: ["", [Validators.required]],
       customerServiceManager: ["", [Validators.required]],
-      milesTravelled: ["", [Validators.required]]
+      milesTravelled: ["", []]
     });
     this.api.getAllFlights().subscribe((res: any) => {
       this.allFlights = res;
@@ -59,30 +62,43 @@ export class AddComponent {
   }
 
   submit() {
-    this.api
-      .getCoordinates(this.form.value.departurePoint)
-      .subscribe((departure: any) => {
-        console.log("From:");
-        console.log(departure.results[0].geometry);
-        // this.api
-        //   .getCoordinates(this.form.value.arrivalPoint)
-        //   .subscribe((arrival: any) => {
-        //     console.log("To:");
-        //     console.log(arrival.results[0].geometry);
-        //   });
+    var settings = {
+      async: true,
+      crossDomain: true,
+      url: `https://us1.locationiq.com/v1/search.php?key=${
+        environment.geocodingAPI
+      }&q=${this.form.value.departurePoint}&format=json&limit=1`,
+      method: "GET"
+    };
+
+    $.ajax(settings).done((dep: any) => {
+      settings.url = `https://us1.locationiq.com/v1/search.php?key=${
+        environment.geocodingAPI
+      }&q=${this.form.value.arrivalPoint}&format=json&limit=1`;
+      $.ajax(settings).done((arr: any) => {
+        if (dep.length > 0 && arr.length > 0) {
+          let departurePoint = new google.maps.LatLng(dep[0].lat, dep[0].lon);
+          let arrivalPoint = new google.maps.LatLng(arr[0].lat, arr[0].lon);
+          this.form.patchValue({
+            travelDate: this.getDate(this.form.value.travelDate),
+            milesTravelled:
+              google.maps.geometry.spherical.computeDistanceBetween(
+                departurePoint,
+                arrivalPoint
+              ) / 1609.344
+          });
+          this.api.addFlight(this.form.value).subscribe((res: any) => {
+            if (!res.success)
+              return this.toast.danger(
+                "There was an error saving this flight!",
+                "Error"
+              );
+            this.toast.success("Flight added successfully", "Success");
+            this.form.reset();
+          });
+        }
       });
-    // this.form.patchValue({
-    //   travelDate: this.getDate(this.form.value.travelDate)
-    // });
-    // this.api.addFlight(this.form.value).subscribe((res: any) => {
-    //   if (!res.success)
-    //     return this.toast.danger(
-    //       "There was an error saving this flight!",
-    //       "Error"
-    //     );
-    //   this.toast.success("Flight added successfully", "Success");
-    //   this.form.reset();
-    // });
+    });
   }
 
   getDate(date: any) {

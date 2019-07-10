@@ -1,4 +1,3 @@
-// import { GoogleChartsModule } from "angular-google-charts";
 import { DashboardComponent } from "./dashboard.component";
 import { NgModule } from "@angular/core";
 

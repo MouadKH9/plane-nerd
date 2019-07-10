@@ -2,5 +2,6 @@ export const environment = {
   production: true,
   base_auth: "http://mouadk.online/planeNERD/api/",
   base_url: "http://mouadk.online/planeNERD/api/",
-  opencagedataAPIkey: "1f0662404fcc406fadac844de48b08f6"
+  geocodingAPI: "d4e67f3a53be5d",
+  googleAPI: "AIzaSyD4EFdCzZPPRF43cmP4KpN2V71tdWj0RJY"
 };
